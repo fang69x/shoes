@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:practice/screens/signup_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
 
-  LoginPage({super.key});
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +70,23 @@ class LoginPage extends StatelessWidget {
                 // Password Field
                 TextField(
                   controller: passwordController,
-                  obscureText: true,
+                  obscureText: _obscureText,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Enter your password',
                     prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: const Icon(Icons.visibility_off_outlined),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -81,6 +101,13 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                //labelText: 'Password'
+                //Displays a floating label that moves above the field when focused.
+                //obscureText: true
+                //This ensures that the text entered in the field is hidden (typically used for passwords).
+                //You can use passwordController.text to access the password entered by the user.
+
                 const SizedBox(height: 12),
 
                 // Forgot Password
@@ -129,7 +156,12 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()));
+                      },
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
