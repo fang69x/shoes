@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:practice/screens/login_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -186,24 +187,31 @@ class _WelcomePageState extends State<WelcomePage>
                             ),
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Swipe Up to enter",
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.8),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 1,
+                          child: GestureDetector(
+                            onVerticalDragStart: (details) => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginPage(),
+                                )),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "Swipe Up to enter",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.8),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 1,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 8),
-                              Icon(
-                                Icons.keyboard_arrow_up,
-                                color: Colors.white.withOpacity(0.8),
-                              ),
-                            ],
+                                const SizedBox(width: 8),
+                                Icon(
+                                  Icons.keyboard_arrow_up,
+                                  color: Colors.white.withOpacity(0.8),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
