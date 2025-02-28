@@ -68,6 +68,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildWelcomeText(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 100,
+        ),
         Text(
           'Welcome Back!',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -82,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.white70,
               ),
         ),
+        const SizedBox(height: 8),
       ],
     );
   }
@@ -109,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           padding: const EdgeInsets.all(12),
         ),
-        child: Image.asset(imagePath, height: 24, width: 24),
+        child: Image.asset(imagePath, height: 24, width: 100),
       ),
     );
   }
@@ -214,7 +218,7 @@ class _LoginPageState extends State<LoginPage> {
           }
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -223,9 +227,7 @@ class _LoginPageState extends State<LoginPage> {
         child: const Text(
           'Login',
           style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
@@ -236,12 +238,22 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Don't have an account? ",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: const Color.fromARGB(179, 255, 255, 255))),
         TextButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignUpPage()),
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => Container(
+                height: MediaQuery.of(context).size.height * 0.9,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF444757),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: SignUpPage(),
+              ),
             );
           },
           child: Text(
