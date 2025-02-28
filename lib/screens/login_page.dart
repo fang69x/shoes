@@ -243,16 +243,51 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () {
             showModalBottomSheet(
               context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              barrierColor: Colors.black54,
+              elevation: 10,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+              ),
               builder: (context) => Container(
                 height: MediaQuery.of(context).size.height * 0.9,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF444757),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF444757),
+                      Color.fromARGB(255, 22, 22, 35),
+                    ],
                   ),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(25)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 15,
+                      spreadRadius: 5,
+                    ),
+                  ],
                 ),
-                child: SignUpPage(),
+                child: Column(
+                  children: [
+                    // Handle bar at the top
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12, bottom: 8),
+                      child: Container(
+                        width: 60,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    Expanded(child: SignUpPage()),
+                  ],
+                ),
               ),
             );
           },
