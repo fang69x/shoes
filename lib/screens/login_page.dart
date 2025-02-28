@@ -20,7 +20,18 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topLeft,
+              colors: [
+                Color.fromARGB(255, 22, 22, 35), // Dark blue-black
+                Color(0xFF444757), // Medium slate gray
+              ],
+              stops: [0.7, 1.5],
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
